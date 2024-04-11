@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://w80aflek8n2w"]
+
+[ext_resource type="PackedScene" uid="uid://0wlra4jb1kxy" path="res://Assets/cannon.gltf" id="1_iyx2f"]
+[ext_resource type="Script" path="res://Source/CannonMode/Cannon.cs" id="2_3eedd"]
+[ext_resource type="AudioStream" uid="uid://b0j1cvntfxm2i" path="res://Source/CannonMode/fire.wav" id="3_w6khv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_soyv5"]
+
+[node name="Cannon" node_paths=PackedStringArray("_fireSpawnLocation", "_barrel", "_fireAudioPlayer") instance=ExtResource("1_iyx2f")]
+script = ExtResource("2_3eedd")
+_fireSpawnLocation = NodePath("cannon/barrel/BallSpawnMarker3D")
+_barrel = NodePath("cannon/barrel")
+_projectileForceRange = Vector2(0.5, 10)
+_projectileForceChargingSpeed = 7.0
+_rotationSpeed = 1.0
+_fireAudioPlayer = NodePath("FireAudioPlayer")
+
+[node name="cannon" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.197797)
+
+[node name="barrel" parent="cannon" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.961199, -0.275855, 0, 0.275855, 0.961199, -1.44382e-15, 0.282588, -0.0671791)
+
+[node name="BallSpawnMarker3D" type="Marker3D" parent="cannon/barrel" index="0"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.22135e-08, 0, -0.378061)
+
+[node name="Platform" type="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.143116, 0, 0, 0, 1, 0, -0.0619344, 0)
+mesh = SubResource("BoxMesh_soyv5")
+
+[node name="Pillar" type="MeshInstance3D" parent="." index="2"]
+transform = Transform3D(0.542228, 0, 0, 0, -6.43316, 0, 0, 0, 0.425896, 0, -3.27924, 0)
+mesh = SubResource("BoxMesh_soyv5")
+
+[node name="FireAudioPlayer" type="AudioStreamPlayer2D" parent="." index="3"]
+stream = ExtResource("3_w6khv")
+
+[node name="HowToPlayLabel" type="Label3D" parent="." index="4"]
+transform = Transform3D(1.91069e-15, 1, 4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1, 0, -4.37114e-08, -1, -2.25324e-09, -0.566548)
+text = "Player ?'s Cannon
+Move: ???
+Fire: ???"
+horizontal_alignment = 0

@@ -1,0 +1,27 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacGodot", "TicTacGodot.csproj", "{9426B77E-FF05-4063-86CB-4EB78B9EC078}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe", "..\TicTacToe\TicTacToe\TicTacToe.csproj", "{0D676BA2-7D9F-4BFE-9A25-4EEAC84BA5E7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9426B77E-FF05-4063-86CB-4EB78B9EC078}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9426B77E-FF05-4063-86CB-4EB78B9EC078}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9426B77E-FF05-4063-86CB-4EB78B9EC078}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{9426B77E-FF05-4063-86CB-4EB78B9EC078}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{9426B77E-FF05-4063-86CB-4EB78B9EC078}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{9426B77E-FF05-4063-86CB-4EB78B9EC078}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{0D676BA2-7D9F-4BFE-9A25-4EEAC84BA5E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D676BA2-7D9F-4BFE-9A25-4EEAC84BA5E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D676BA2-7D9F-4BFE-9A25-4EEAC84BA5E7}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D676BA2-7D9F-4BFE-9A25-4EEAC84BA5E7}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{0D676BA2-7D9F-4BFE-9A25-4EEAC84BA5E7}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D676BA2-7D9F-4BFE-9A25-4EEAC84BA5E7}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+EndGlobal

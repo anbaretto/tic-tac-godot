@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://0q0k5nlahiiv"]
+
+[ext_resource type="PackedScene" uid="uid://nnnhqnvvkfpy" path="res://Source/CannonMode/explosion_particles.tscn" id="1_c1qbt"]
+[ext_resource type="Material" uid="uid://d2xlrjd61kyls" path="res://Source/CannonMode/playerO.tres" id="2_dgymi"]
+
+[node name="ExplosionParticles_PlayerX" instance=ExtResource("1_c1qbt")]
+material_override = ExtResource("2_dgymi")

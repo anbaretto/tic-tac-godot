@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://cugaage2ieauu"]
+
+[ext_resource type="Script" path="res://Source/TopBar.cs" id="1_rwrnn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p2dot"]
+
+[node name="TopBar" type="PanelContainer" node_paths=PackedStringArray("_restartButton", "_exitButton", "_currentPlayerLabel", "_winRecordLabel")]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 50.0
+grow_horizontal = 2
+script = ExtResource("1_rwrnn")
+_initialScreenPath = "res://Source/initial_screen.tscn"
+_restartButton = NodePath("HBoxContainer/RestartButton")
+_exitButton = NodePath("HBoxContainer/ExitButton")
+_currentPlayerLabel = NodePath("HBoxContainer/CurrentPlayerLabel")
+_winRecordLabel = NodePath("HBoxContainer/WinRecordLabel")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_p2dot")
+
+[node name="CurrentPlayerLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+text = "Current Player: ?"
+vertical_alignment = 1
+
+[node name="WinRecordLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "X  |  1 x 2  |  O"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Restart"
+
+[node name="ExitButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Exit"

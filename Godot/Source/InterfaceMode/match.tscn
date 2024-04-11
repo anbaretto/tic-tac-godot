@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://bffy8vx5kgx3j"]
+
+[ext_resource type="Script" path="res://Source/GameOverWatcher.cs" id="1_7rgcl"]
+[ext_resource type="PackedScene" uid="uid://by1c8wsu5sv1b" path="res://Source/InterfaceMode/location_button.tscn" id="1_32aif"]
+[ext_resource type="PackedScene" uid="uid://cugaage2ieauu" path="res://Source/top_bar.tscn" id="3_3jq0q"]
+[ext_resource type="PackedScene" uid="uid://fmc280bminhs" path="res://Source/game_over_screen.tscn" id="3_e6edv"]
+
+[node name="Match" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverWatcher" type="Node" parent="."]
+script = ExtResource("1_7rgcl")
+_gameOverScreen = ExtResource("3_e6edv")
+
+[node name="TopBar" parent="." instance=ExtResource("3_3jq0q")]
+layout_mode = 1
+
+[node name="Grid" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 57.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="LocationButton1" parent="Grid" instance=ExtResource("1_32aif")]
+layout_mode = 2
+
+[node name="LocationButton2" parent="Grid" instance=ExtResource("1_32aif")]
+layout_mode = 2
+Location = 1
+
+[node name="LocationButton3" parent="Grid" instance=ExtResource("1_32aif")]
+layout_mode = 2
+Location = 2
+
+[node name="LocationButton4" parent="Grid" instance=ExtResource("1_32aif")]
+layout_mode = 2
+Location = 3
+
+[node name="LocationButton5" parent="Grid" instance=ExtResource("1_32aif")]
+layout_mode = 2
+Location = 4
+
+[node name="LocationButton6" parent="Grid" instance=ExtResource("1_32aif")]
+layout_mode = 2
+Location = 5
+
+[node name="LocationButton7" parent="Grid" instance=ExtResource("1_32aif")]
+layout_mode = 2
+Location = 6
+
+[node name="LocationButton8" parent="Grid" instance=ExtResource("1_32aif")]
+layout_mode = 2
+Location = 7
+
+[node name="LocationButton9" parent="Grid" instance=ExtResource("1_32aif")]
+layout_mode = 2
+Location = 8

@@ -1,0 +1,116 @@
+[gd_scene load_steps=3 format=3 uid="uid://dia8vc62byhl5"]
+
+[ext_resource type="Script" path="res://Source/InitialScreen.cs" id="1_gpwd1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_awvk0"]
+
+[node name="Panel" type="Panel" node_paths=PackedStringArray("_playInterfaceButton", "_playCannonButton", "_exitButton")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gpwd1")
+_playInterfaceButton = NodePath("PanelContainer/VBoxContainer/VBoxContainer/PlayInterfaceButton")
+_playCannonButton = NodePath("PanelContainer/VBoxContainer/VBoxContainer/PlayCannonButton")
+_exitButton = NodePath("PanelContainer/VBoxContainer/VBoxContainer/ExitButton")
+_interfaceModeScenePath = "res://Source/InterfaceMode/match.tscn"
+_cannonModeScenePath = "res://Source/CannonMode/match.tscn"
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.0
+offset_top = -173.0
+offset_right = 188.0
+offset_bottom = 163.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="HSeparator3" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+theme_override_styles/separator = SubResource("StyleBoxEmpty_awvk0")
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Welcome to TicTacGodot!
+~ Ultimate Edition ~"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxEmpty_awvk0")
+
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.694118, 0.694118, 0.694118, 1)
+text = "a tiny Godot + .Net learning project"
+horizontal_alignment = 1
+
+[node name="LinkButton" type="LinkButton" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.694118, 0.694118, 0.694118, 1)
+text = "by @andbto"
+uri = "https://dede.dev.br/"
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+theme_override_styles/separator = SubResource("StyleBoxEmpty_awvk0")
+
+[node name="HSeparator4" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PlayInterfaceButton" type="Button" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Basic Mode"
+
+[node name="PlayCannonButton" type="Button" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cannon Mode"
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+theme_override_styles/separator = SubResource("StyleBoxEmpty_awvk0")
+
+[node name="ExitButton" type="Button" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Quit"
+
+[node name="HSeparator5" type="HSeparator" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -38.0
+offset_top = -32.0
+offset_right = -15.0
+offset_bottom = -9.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "1.0"
+horizontal_alignment = 1

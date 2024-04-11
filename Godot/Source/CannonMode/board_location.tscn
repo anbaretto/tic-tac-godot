@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://k6hh7l3hjhhf"]
+
+[ext_resource type="Script" path="res://Source/CannonMode/BoardLocation.cs" id="1_2jog0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cjmp2"]
+size = Vector3(0.285, 0.025, 0.285)
+
+[node name="Location" type="Area3D" node_paths=PackedStringArray("_playerXMark", "_playerOMark")]
+collision_mask = 2
+script = ExtResource("1_2jog0")
+Location = 4
+_playerXMark = NodePath("PlayerXLabel")
+_playerOMark = NodePath("PlayerOLabel")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0115315, 0)
+shape = SubResource("BoxShape3D_cjmp2")
+
+[node name="PlayerXLabel" type="Label3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, 4.37114e-08, 0, 1, 1, 4.37114e-08, -4.37114e-08, 0, 0, 0)
+visible = false
+modulate = Color(1, 0, 0.34902, 1)
+outline_modulate = Color(0.0901961, 0, 0.0627451, 1)
+text = "X"
+outline_size = 8
+
+[node name="PlayerOLabel" type="Label3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, 4.37114e-08, 0, 1, 1, 4.37114e-08, -4.37114e-08, 0, 0, 0)
+visible = false
+modulate = Color(0.0862745, 0.243137, 1, 1)
+outline_modulate = Color(0.0117647, 0, 0.223529, 1)
+text = "O"
+outline_size = 8

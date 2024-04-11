@@ -1,0 +1,84 @@
+[gd_scene load_steps=3 format=3 uid="uid://fmc280bminhs"]
+
+[ext_resource type="Script" path="res://Source/GameOverScreen.cs" id="1_ah73c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_awvk0"]
+
+[node name="GameOverScreen" type="Panel" node_paths=PackedStringArray("_restartButton", "_exitButton", "_mathResultLabel")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ah73c")
+_restartButton = NodePath("PanelContainer/VBoxContainer/HBoxContainer/RestartButton")
+_exitButton = NodePath("PanelContainer/VBoxContainer/HBoxContainer/ExitButton")
+_mathResultLabel = NodePath("PanelContainer/VBoxContainer/ResultLabel")
+_initialScreenPath = "res://Source/initial_screen.tscn"
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -213.0
+offset_top = -107.0
+offset_right = 213.0
+offset_bottom = 108.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="HSeparator1" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxEmpty_awvk0")
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "~ Game Over ~"
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+theme_override_styles/separator = SubResource("StyleBoxEmpty_awvk0")
+
+[node name="ResultLabel" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Match Result Label"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+theme_override_styles/separator = SubResource("StyleBoxEmpty_awvk0")
+
+[node name="HSeparator4" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="RestartButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Restart"
+
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ExitButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Quit"
+
+[node name="HSeparator5" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0

@@ -1,0 +1,548 @@
+[gd_scene load_steps=38 format=3 uid="uid://cwfconbwhaq0h"]
+
+[ext_resource type="Script" path="res://Source/GameOverWatcher.cs" id="1_bg7ub"]
+[ext_resource type="PackedScene" uid="uid://w80aflek8n2w" path="res://Source/CannonMode/cannon.tscn" id="1_neipc"]
+[ext_resource type="PackedScene" uid="uid://dbffoypuu668t" path="res://Source/CannonMode/wall.tscn" id="2_5inib"]
+[ext_resource type="PackedScene" uid="uid://fmc280bminhs" path="res://Source/game_over_screen.tscn" id="2_7l5jm"]
+[ext_resource type="PackedScene" uid="uid://k6hh7l3hjhhf" path="res://Source/CannonMode/board_location.tscn" id="3_u1o8r"]
+[ext_resource type="Script" path="res://Source/CannonMode/ChallengeRandomizer.cs" id="3_u175l"]
+[ext_resource type="PackedScene" uid="uid://dvmi7twlrycsu" path="res://Source/CannonMode/cannon_ball_playerO.tscn" id="4_2u0fb"]
+[ext_resource type="Script" path="res://Source/CannonMode/OutOfGameArea.cs" id="4_6ylgb"]
+[ext_resource type="PackedScene" uid="uid://cugaage2ieauu" path="res://Source/top_bar.tscn" id="5_18wk3"]
+[ext_resource type="PackedScene" uid="uid://dvk41f0bl4hrm" path="res://Source/CannonMode/cannon_ball_playerX.tscn" id="5_l5pgh"]
+[ext_resource type="Material" uid="uid://d2xlrjd61kyls" path="res://Source/CannonMode/playerO.tres" id="5_vipyc"]
+[ext_resource type="Material" uid="uid://bejya86vw3rfq" path="res://Source/CannonMode/playerX.tres" id="7_u3doj"]
+
+[sub_resource type="Animation" id="Animation_bb8qw"]
+resource_name = "challenge_loop"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jvu8c"]
+_data = {
+"challenge_loop": SubResource("Animation_bb8qw")
+}
+
+[sub_resource type="Animation" id="Animation_da0sy"]
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Board:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ej377"]
+resource_name = "rotate_board"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Board:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.785398, 0, 0), Vector3(0.785398, 0, 0), Vector3(-0.785398, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tf06v"]
+_data = {
+"RESET": SubResource("Animation_da0sy"),
+"challenge_loop": SubResource("Animation_ej377")
+}
+
+[sub_resource type="Animation" id="Animation_nw66n"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Board:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Board:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Board:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_l0jvj"]
+resource_name = "challenge_loop"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Board:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1.5, -0.25, 0, 0.25, 0, -1.5, -0.25, 0, 0.25, 0, 1.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 3, 6)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Board:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Board:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q6bn0"]
+_data = {
+"RESET": SubResource("Animation_nw66n"),
+"challenge_loop": SubResource("Animation_l0jvj")
+}
+
+[sub_resource type="Animation" id="Animation_w6b6t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Board:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1h6ba"]
+resource_name = "challenge_loop"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Board:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_chne3"]
+_data = {
+"RESET": SubResource("Animation_w6b6t"),
+"challenge_loop": SubResource("Animation_1h6ba")
+}
+
+[sub_resource type="Animation" id="Animation_trxbk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Cannons:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_r3hbf"]
+resource_name = "qfsafsa"
+length = 15.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Cannons:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pf3vr"]
+_data = {
+"RESET": SubResource("Animation_trxbk"),
+"challenge_loop": SubResource("Animation_r3hbf")
+}
+
+[sub_resource type="Animation" id="Animation_j5nv2"]
+resource_name = "challenge_loop"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Challenge_BoardMovesVertically")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["challenge_loop", -1, 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Challenge_BoardRotateAroundItself")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["challenge_loop", -1, 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pkscr"]
+_data = {
+"challenge_loop": SubResource("Animation_j5nv2")
+}
+
+[sub_resource type="Animation" id="Animation_u0gli"]
+resource_name = "challenge_loop"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Challenge_BoardRotatesHorizontally")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["challenge_loop", -1, 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Challenge_BoardMovesVertically")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["challenge_loop", -1, 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1kry0"]
+_data = {
+"challenge_loop": SubResource("Animation_u0gli")
+}
+
+[sub_resource type="Animation" id="Animation_vedaj"]
+resource_name = "challenge_loop"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Challenge_BoardRotatesHorizontally")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["challenge_loop", -1, 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Challenge_BoardMovesVertically")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["challenge_loop", -1, 1.0, false],
+"method": &"play"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Challenge_BoardRotateAroundItself")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["challenge_loop", -1, 1.0, false],
+"method": &"play"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Challenge_CannonsRotateAroundBoard")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["challenge_loop", -1, 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uc8ov"]
+_data = {
+"challenge_loop": SubResource("Animation_vedaj")
+}
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1sr0l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a8g4r"]
+size = Vector3(1, 0.005, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s1cv0"]
+albedo_color = Color(0.168627, 0.168627, 0.168627, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yg2sl"]
+material = SubResource("StandardMaterial3D_s1cv0")
+size = Vector2(1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8vj0c"]
+size = Vector3(20, 0.5, 20)
+
+[node name="Match" type="Node3D"]
+
+[node name="GameOverWatcher" type="Node" parent="."]
+script = ExtResource("1_bg7ub")
+_gameOverScreen = ExtResource("2_7l5jm")
+
+[node name="Challenges" type="Node" parent="."]
+script = ExtResource("3_u175l")
+
+[node name="Challenge_None" type="AnimationPlayer" parent="Challenges"]
+libraries = {
+"": SubResource("AnimationLibrary_jvu8c")
+}
+
+[node name="Challenge_BoardRotatesHorizontally" type="AnimationPlayer" parent="Challenges"]
+libraries = {
+"": SubResource("AnimationLibrary_tf06v")
+}
+
+[node name="Challenge_BoardMovesVertically" type="AnimationPlayer" parent="Challenges"]
+libraries = {
+"": SubResource("AnimationLibrary_q6bn0")
+}
+
+[node name="Challenge_BoardRotateAroundItself" type="AnimationPlayer" parent="Challenges"]
+libraries = {
+"": SubResource("AnimationLibrary_chne3")
+}
+
+[node name="Challenge_CannonsRotateAroundBoard" type="AnimationPlayer" parent="Challenges"]
+libraries = {
+"": SubResource("AnimationLibrary_pf3vr")
+}
+
+[node name="Challenge_BoardMovesVerticallyAndRotatesAroundItself" type="AnimationPlayer" parent="Challenges"]
+libraries = {
+"": SubResource("AnimationLibrary_pkscr")
+}
+
+[node name="Challenge_BoardRotatesHorizontallyAndMovesVeritcally" type="AnimationPlayer" parent="Challenges"]
+libraries = {
+"": SubResource("AnimationLibrary_1kry0")
+}
+
+[node name="Challenge_All" type="AnimationPlayer" parent="Challenges"]
+libraries = {
+"": SubResource("AnimationLibrary_uc8ov")
+}
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.920634, 0.390426, 0, -0.390426, 0.920634, 0, 2, 0)
+light_energy = 0.397
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -0.225, 4.179, -0.067)
+
+[node name="Cannons" type="Node3D" parent="."]
+
+[node name="Cannon_PlayerO" parent="Cannons" instance=ExtResource("1_neipc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.787266, 3.18285)
+_projectileScene = ExtResource("4_2u0fb")
+_player = 2
+_fireShakeIntensity = 0.04
+_fireShakeDuration = 0.05
+
+[node name="Platform" parent="Cannons/Cannon_PlayerO" index="1"]
+material_override = ExtResource("5_vipyc")
+
+[node name="HowToPlayLabel" parent="Cannons/Cannon_PlayerO" index="4"]
+transform = Transform3D(1.91069e-15, 1, 4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1, 0, -4.37114e-08, -1, 0, -0.61458)
+text = "Player O Cannon
+Move: Arrows
+Fire: Ctrl (hold)"
+
+[node name="Cannon_PlayerX" parent="Cannons" instance=ExtResource("1_neipc")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -9.07182e-08, 0.787266, -3.40487)
+_projectileScene = ExtResource("5_l5pgh")
+_player = 1
+_fireShakeIntensity = 0.04
+_fireShakeDuration = 0.05
+
+[node name="Platform" parent="Cannons/Cannon_PlayerX" index="1"]
+material_override = ExtResource("7_u3doj")
+
+[node name="HowToPlayLabel" parent="Cannons/Cannon_PlayerX" index="4"]
+transform = Transform3D(1.31134e-07, -1, 4.37114e-08, 8.74228e-08, 4.37114e-08, 1, -1, -1.31134e-07, 8.74228e-08, 1, 0, 0.507656)
+text = "Player X Cannon
+Move: WASD
+Fire: Space (hold)"
+
+[node name="Board" type="StaticBody3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+physics_material_override = SubResource("PhysicsMaterial_1sr0l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board"]
+shape = SubResource("BoxShape3D_a8g4r")
+
+[node name="Floor" type="MeshInstance3D" parent="Board"]
+mesh = SubResource("PlaneMesh_yg2sl")
+
+[node name="Floor2" type="MeshInstance3D" parent="Board"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, -0.0476112, -4.1623e-09)
+mesh = SubResource("PlaneMesh_yg2sl")
+
+[node name="Walls" type="Node3D" parent="Board"]
+
+[node name="Wall" parent="Board/Walls" instance=ExtResource("2_5inib")]
+transform = Transform3D(20, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, -0.17)
+
+[node name="Wall2" parent="Board/Walls" instance=ExtResource("2_5inib")]
+transform = Transform3D(20, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0.17)
+
+[node name="Wall5" parent="Board/Walls" instance=ExtResource("2_5inib")]
+transform = Transform3D(20, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0.5)
+
+[node name="Wall6" parent="Board/Walls" instance=ExtResource("2_5inib")]
+transform = Transform3D(20, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, -0.5)
+
+[node name="Wall3" parent="Board/Walls" instance=ExtResource("2_5inib")]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 20, -0.17, 0, 0)
+
+[node name="Wall7" parent="Board/Walls" instance=ExtResource("2_5inib")]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 21, -0.5, 0, 0)
+
+[node name="Wall8" parent="Board/Walls" instance=ExtResource("2_5inib")]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 21, 0.5, 0, 0)
+
+[node name="Wall4" parent="Board/Walls" instance=ExtResource("2_5inib")]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 20, 0.17, 0, 0)
+
+[node name="Locations" type="Node3D" parent="Board"]
+
+[node name="BoardLocation1" parent="Board/Locations" instance=ExtResource("3_u1o8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.333115, 0, -0.334545)
+Location = 0
+
+[node name="BoardLocation2" parent="Board/Locations" instance=ExtResource("3_u1o8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.331685, 0, -0.00142978)
+Location = 1
+
+[node name="BoardLocation3" parent="Board/Locations" instance=ExtResource("3_u1o8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.338356, 0, 0.327083)
+Location = 2
+
+[node name="BoardLocation4" parent="Board/Locations" instance=ExtResource("3_u1o8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00142978, 0, -0.334545)
+Location = 3
+
+[node name="BoardLocation5" parent="Board/Locations" instance=ExtResource("3_u1o8r")]
+
+[node name="BoardLocation6" parent="Board/Locations" instance=ExtResource("3_u1o8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00182987, 0, 0.327083)
+Location = 5
+
+[node name="BoardLocation7" parent="Board/Locations" instance=ExtResource("3_u1o8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.341693, 0, -0.334545)
+Location = 6
+
+[node name="BoardLocation8" parent="Board/Locations" instance=ExtResource("3_u1o8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.341693, 0, -0.00142978)
+Location = 7
+
+[node name="BoardLocation9" parent="Board/Locations" instance=ExtResource("3_u1o8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.33868, 0, 0.327083)
+Location = 8
+
+[node name="OutOfGameArea3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.24602, 0)
+collision_mask = 2
+script = ExtResource("4_6ylgb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OutOfGameArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0115315, 0)
+shape = SubResource("BoxShape3D_8vj0c")
+
+[node name="TopBar" parent="." instance=ExtResource("5_18wk3")]
+
+[editable path="Cannons/Cannon_PlayerO"]
+[editable path="Cannons/Cannon_PlayerX"]
