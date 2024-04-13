@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-namespace TicTacToe_Godot;
+namespace TicTacGodot;
 
 public partial class CameraShaker : Node
 {

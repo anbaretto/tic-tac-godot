@@ -1,7 +1,7 @@
 using Godot;
-using TicTacToe_Godot.Utility;
+using TicTacGodot.Utility;
 
-namespace TicTacToe_Godot;
+namespace TicTacGodot;
 
 public partial class InitialScreen : Panel
 {

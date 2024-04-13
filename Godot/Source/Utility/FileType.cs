@@ -1,4 +1,4 @@
-﻿namespace TicTacToe_Godot.Utility;
+﻿namespace TicTacGodot.Utility;
 
 public static class FileType
 {

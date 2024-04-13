@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-namespace TicTacToe_Godot.CannonMode;
+namespace TicTacGodot.CannonMode;
 
 public partial class OutOfGameArea : Area3D
 {

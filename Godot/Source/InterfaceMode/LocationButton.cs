@@ -1,8 +1,8 @@
 using Godot;
+using TicTacGodot.Utility;
 using TicTacToe;
-using TicTacToe_Godot.Utility;
 
-namespace TicTacToe_Godot.InterfaceMode;
+namespace TicTacGodot.InterfaceMode;
 
 public partial class LocationButton : Button
 {

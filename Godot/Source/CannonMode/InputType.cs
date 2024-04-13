@@ -1,7 +1,7 @@
 ﻿using System;
 using TicTacToe;
 
-namespace TicTacToe_Godot.CannonMode;
+namespace TicTacGodot.CannonMode;
 
 public static class InputType
 {

@@ -1,9 +1,9 @@
 using Godot;
+using TicTacGodot.CannonMode;
+using TicTacGodot.Utility;
 using TicTacToe;
-using TicTacToe_Godot.CannonMode;
-using TicTacToe_Godot.Utility;
 
-namespace TicTacToe_Godot;
+namespace TicTacGodot;
 
 public partial class GameOverScreen : Control
 {

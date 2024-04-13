@@ -1,8 +1,8 @@
 using Godot;
+using TicTacGodot.Utility;
 using TicTacToe;
-using TicTacToe_Godot.Utility;
 
-namespace TicTacToe_Godot.CannonMode;
+namespace TicTacGodot.CannonMode;
 
 public partial class CannonBall : RigidBody3D
 {
