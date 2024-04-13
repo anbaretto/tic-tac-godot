@@ -45,7 +45,6 @@ public partial class BoardLocation : Area3D
 		}
 	}
 
-
 	private void ShowPlayerMark(Player player)
 	{
 		var playerMark = player switch
@@ -56,13 +55,5 @@ public partial class BoardLocation : Area3D
 		};
 
 		playerMark.Visible = true;
-		
-		
-		// var playerMaterial = player switch
-		// {
-		// 	Player.X => _playerXMaterial,
-		// 	Player.O => _playerOMaterial,
-		// 	_ => throw new ArgumentOutOfRangeException(nameof(player), player, null)
-		// };
 	}
 }
