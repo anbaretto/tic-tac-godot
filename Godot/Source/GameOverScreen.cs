@@ -1,5 +1,4 @@
 using Godot;
-using TicTacGodot.CannonMode;
 using TicTacGodot.Utility;
 using TicTacToe;
 
@@ -7,50 +6,46 @@ namespace TicTacGodot;
 
 public partial class GameOverScreen : Control
 {
-	[Export] private Button _restartButton;
-	[Export] private Button _exitButton;
-	[Export] private Label _mathResultLabel;
-	
-	[Export(PropertyHint.File, FileType.Scene)]
-	private string _initialScreenPath;
+    [Export] private Button _restartButton;
+    [Export] private Button _exitButton;
+    [Export] private Label _mathResultLabel;
 
-	private MatchService _matchService;
+    [Export(PropertyHint.File, FileType.Scene)]
+    private string _initialScreenPath;
 
-	public override void _Ready()
-	{
-		_matchService = GetNode<MatchService>(AutoloadPath.MatchService);
+    private MatchService _matchService;
 
-		UpdateResultLabel();
+    public override void _Ready()
+    {
+        _matchService = GetNode<MatchService>(AutoloadPath.MatchService);
 
-		_restartButton.Pressed += OnRestartButtonPressed;
-		_exitButton.Pressed += OnExitButtonPressed;
-	}
+        UpdateResultLabel();
 
-	private void UpdateResultLabel()
-	{
-		var matchState = _matchService.CurrentState;
+        _restartButton.Pressed += OnRestartButtonPressed;
+        _exitButton.Pressed += OnExitButtonPressed;
+    }
 
-		switch (matchState)
-		{
-			case TieState:
-				_mathResultLabel.Text = "It's a tie!";
-				break;
+    private void UpdateResultLabel()
+    {
+        var matchState = _matchService.CurrentState;
 
-			case PlayerWonState playerWonState:
-				_mathResultLabel.Text = $"Player {playerWonState.Winner} won!";
-				break;
+        switch (matchState)
+        {
+            case TieState:
+                _mathResultLabel.Text = "It's a tie!";
+                break;
 
-			default:
-				GD.PushError($"Unexpected match state at GameOverWindow: {matchState}");
-				break;
-		}
-	}
+            case PlayerWonState playerWonState:
+                _mathResultLabel.Text = $"Player {playerWonState.Winner} won!";
+                break;
 
-	private void OnRestartButtonPressed() => GetTree().ReloadCurrentScene();
+            default:
+                GD.PushError($"Unexpected match state at GameOverWindow: {matchState}");
+                break;
+        }
+    }
 
-	private void OnExitButtonPressed()
-	{
-		ChallengeRandomizer.ResetChallengeProgress();;
-		GetTree().ChangeSceneToFile(_initialScreenPath);
-	}
+    private void OnRestartButtonPressed() => GetTree().ReloadCurrentScene();
+
+    private void OnExitButtonPressed() => GetTree().ChangeSceneToFile(_initialScreenPath);
 }

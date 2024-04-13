@@ -1,5 +1,4 @@
 using Godot;
-using TicTacGodot.CannonMode;
 using TicTacGodot.Utility;
 using TicTacToe;
 
@@ -18,21 +17,21 @@ public partial class TopBar : Control
 	[Export] private Label _winRecordLabel;
 
 	private MatchService _matchService;
-
-	private static int _playerOWins;
-	private static int _playerXWins;
+	private ScoreCounter _scoreCounter;
 
 	public override void _Ready()
 	{
 		_matchService = GetNode<MatchService>(AutoloadPath.MatchService);
+		_scoreCounter = GetNode<ScoreCounter>(AutoloadPath.ScoreCounter);
 		_matchService.StartMatch();
 
 		_matchService.MatchStateChanged += OnMatchStateChanged;
+		_scoreCounter.ScoreChanged += OnScoreChanged;
 		_restartButton.Pressed += OnRestartButtonPressed;
 		_exitButton.Pressed += OnExitButtonPressed;
 
 		UpdatePlayerLabel(_matchService.CurrentState);
-		UpdateWinRecordLabel();
+		UpdateWinRecordLabel(_scoreCounter.XScore, _scoreCounter.OScore);
 	}
 
 	protected override void Dispose(bool disposing)
@@ -40,25 +39,19 @@ public partial class TopBar : Control
 		if (disposing)
 		{
 			_matchService.MatchStateChanged -= OnMatchStateChanged;
+			_scoreCounter.ScoreChanged -= OnScoreChanged;
 		}
 
 		base.Dispose(disposing);
 	}
 
-	private void OnMatchStateChanged(MatchState state) => UpdateUi(state);
+	private void OnMatchStateChanged(MatchState state) => UpdatePlayerLabel(state);
+
+	private void OnScoreChanged(int xScore, int oScore) => UpdateWinRecordLabel(xScore, oScore);
+
 	private void OnExitButtonPressed() => ReturnToInitialScreen();
+
 	private void OnRestartButtonPressed() => ReloadScene();
-
-	private void UpdateUi(MatchState state)
-	{
-		UpdatePlayerLabel(state);
-
-		if (state is MatchOverState matchOverState)
-		{
-			RegisterWin(matchOverState);
-			UpdateWinRecordLabel();
-		}
-	}
 
 	private void UpdatePlayerLabel(MatchState state)
 	{
@@ -72,31 +65,13 @@ public partial class TopBar : Control
 		}
 	}
 
-	private void RegisterWin(MatchOverState matchOverState)
+	private void UpdateWinRecordLabel(int playerXWins, int playerOWins)
 	{
-		if (matchOverState is not PlayerWonState playerWonState)
-			return;
-
-		switch (playerWonState.Winner)
-		{
-			case Player.X:
-				_playerXWins += 1;
-				break;
-
-			case Player.O:
-				_playerOWins += 1;
-				break;
-		}
-	}
-
-	private void UpdateWinRecordLabel()
-	{
-		_winRecordLabel.Text = $"X  |  {_playerXWins} x {_playerOWins}  |  O";
+		_winRecordLabel.Text = $"X  |  {playerXWins} x {playerOWins}  |  O";
 	}
 
 	private void ReturnToInitialScreen()
 	{
-		ChallengeRandomizer.ResetChallengeProgress();
 		GetTree().ChangeSceneToFile(_initialScreenPath);
 	}
 
