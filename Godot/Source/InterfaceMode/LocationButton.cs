@@ -19,22 +19,21 @@ public partial class LocationButton : Button
 
 	private void OnButtonPressed()
 	{
+		var nextPlayer = _matchService.NextPlayer;
+
 		var result = _matchService
 			.DoMove()
-			.ForExpectedNextPlayer()
+			.ForPlayer(nextPlayer)
 			.AtLocation(Location)
 			.Execute();
 
-		if (!result.IsSuccess)
-			return;
-
-		if(result.Value is not InProgressState state)
-			return;
-
-		SetPlayerMark(state.LastPlayer);
+		if (result.IsSuccess)
+		{
+			ShowPlayerMark(nextPlayer);
+		}
 	}
 
-	private void SetPlayerMark(Player player)
+	private void ShowPlayerMark(Player player)
 	{
 		Text = player.ToString();
 	}
