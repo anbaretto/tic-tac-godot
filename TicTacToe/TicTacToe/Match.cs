@@ -90,15 +90,13 @@ public sealed class Match
 
     private void CheckGameOverConditions()
     {
-        if (_board.IsFull())
-        {
-            State = new TieState();
-            return;
-        }
-
         if (AnyWinConditionSequenceMatchesFor(out var player))
         {
             State = new PlayerWonState(player);
+        }
+        else if (_board.IsFull())
+        {
+            State = new TieState();
         }
     }
 

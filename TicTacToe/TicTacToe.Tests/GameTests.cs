@@ -57,7 +57,7 @@ public class GameTests
 
         AssertPlayerWon(game, _playerX);
     }
-    
+
     [Test]
     public void Game_WhenPlayerFillsHorizontalBottom_PlayerWon()
     {
@@ -69,7 +69,7 @@ public class GameTests
 
         AssertPlayerWon(game, _playerX);
     }
-    
+
     [Test]
     public void Game_WhenPlayerFillsVerticalLeft_PlayerWon()
     {
@@ -81,7 +81,7 @@ public class GameTests
 
         AssertPlayerWon(game, _playerX);
     }
-    
+
     [Test]
     public void Game_WhenPlayerFillsVerticalCenter_PlayerWon()
     {
@@ -93,7 +93,7 @@ public class GameTests
 
         AssertPlayerWon(game, _playerX);
     }
-    
+
     [Test]
     public void Game_WhenPlayerFillsVerticalRight_PlayerWon()
     {
@@ -105,7 +105,7 @@ public class GameTests
 
         AssertPlayerWon(game, _playerX);
     }
-    
+
     [Test]
     public void Game_WhenPlayerFillsDiagonal1_PlayerWon()
     {
@@ -117,7 +117,7 @@ public class GameTests
 
         AssertPlayerWon(game, _playerX);
     }
-    
+
     [Test]
     public void Game_WhenPlayerFillsDiagonal2_PlayerWon()
     {
@@ -137,7 +137,49 @@ public class GameTests
     }
 
     #endregion
+
+    #region Board Full -> Tie
+
+    [Test]
+    public void Game_WhenPlayerFillsSequenceAtLastMove_PlayerWonState()
+    {
+        var match = new Match(Board.Custom()
+            .WithMove(_playerX, Location.TopLeft)
+            .WithMove(_playerO, Location.TopCenter)
+            .WithMove(_playerO, Location.MiddleLeft)
+            .WithMove(_playerX, Location.MiddleCenter)
+            .WithMove(_playerX, Location.MiddleRight)
+            .WithMove(_playerX, Location.BottomLeft)
+            .WithMove(_playerO, Location.BottomCenter)
+            .WithMove(_playerO, Location.BottomRight)
+            .Build());
+
+        match.MakeAMove(_playerX, Location.TopRight);
+
+        AssertPlayerWon(match, _playerX);
+    }
     
+    [Test]
+    public void Game_WhenBoardIsFullWithNoWinningPlayers_TieState()
+    {
+        var match = new Match(Board.Custom()
+            .WithMove(_playerX, Location.TopLeft)
+            .WithMove(_playerO, Location.TopCenter)
+            .WithMove(_playerO, Location.MiddleLeft)
+            .WithMove(_playerO, Location.MiddleCenter)
+            .WithMove(_playerX, Location.MiddleRight)
+            .WithMove(_playerX, Location.BottomLeft)
+            .WithMove(_playerX, Location.BottomCenter)
+            .WithMove(_playerO, Location.BottomRight)
+            .Build());
+
+        match.MakeAMove(_playerX, Location.TopRight);
+
+        Assert.That(match.State, Is.TypeOf<TieState>());
+    }
+
+    #endregion
+
     #region Invalid Moves -> MoveError Results
 
     [Test]
@@ -150,14 +192,14 @@ public class GameTests
         Assert.That(secondMoveResult.IsFailed, Is.True);
         Assert.That(secondMoveResult.HasError<WrongPlayerTurnError>(), Is.True);
     }
-    
+
     [Test]
     public void Game_PlayerMakesRepeatedMove_ReturnsLocationAlreadyTakenError()
     {
         _defaultMatch.MakeAMove(_playerX, Location.BottomCenter);
-        
+
         var result = _defaultMatch.MakeAMove(_playerO, Location.BottomCenter);
-        
+
         Assert.That(result.IsFailed, Is.True);
         Assert.That(result.HasError<LocationAlreadyTakenError>(), Is.True);
     }
