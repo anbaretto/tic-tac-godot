@@ -6,12 +6,12 @@ Hey there, welcome!
 This is a small learning project I created for getting to know Godot better (using C#) and a _very specific_ game development strategy idea.
 In here you will find a non-impressive tic-tac-toe game implementation, but there are layers to it hehe!
 
-So my idea was to develop a "strategy game", or a turn-based one, in a robust way (in the lens of software development).
+My idea was to develop a "strategy game", or a turn-based one, in a robust way (in the lens of software development).
 That means, a well-tested and validated (business) game rules, independent of game engines inner and crazy workings.
 
 So this project has different "moving pieces":
 - `TicTacToe.TicTacToe`: a .NET project that provides the "tic-tac-toe engine", including concepts of Players, Making Moves, and Match.
-- `TicTacToe.Tests`: a .Net project with [unit-tests](https://en.wikipedia.org/wiki/Unit_testing) that validate the game rules.
+- `TicTacToe.Tests`: a .NET project with [unit-tests](https://en.wikipedia.org/wiki/Unit_testing) that validate the game rules.
 - `TicTacToe.ConsoleApp`: a simple windows console application to play the game.
 - `Godot Project`: a game made with Godot that uses the "tic-tac-toe engine" and adds "more interesting" inputs and feedbacks.
 Moreover, I implemented two "modes" in this Godot project:
@@ -20,7 +20,7 @@ Moreover, I implemented two "modes" in this Godot project:
 
 In case you want to know more, I detail them further in the next section.
 
-Otherwise, if you just want to play them now, head to [Releases](https://github.com/anbaretto/tic-tac-godot/releases) to download it!
+Otherwise, if you just want to **play** them now, head to [Releases](https://github.com/anbaretto/tic-tac-godot/releases) to download it!
 
 ## How it works
 
@@ -36,13 +36,12 @@ It provides concepts such as:
 
 ### TicTacToe.Tests
 This project validates the core's logic by implementing unit-tests ([NUnit](https://nunit.org/)).
-
-There it's validated things like win conditions, tie conditions, expected results and state changes when a Player tries to make a move.
+Things like win conditions, tie conditions, expected results and state changes when a Player tries to make a move.
 
 Not much to see here, other than [checking out the code](https://github.com/anbaretto/tic-tac-godot/tree/main/TicTacToe/TicTacToe.Tests)!
 
 ### TicTacToe.ConsoleApp
-The simplest implementation possible to test a game of this kind, now being able to feel the flow!
+The simplest application possible to test a game of this kind, now being able to feel the flow!
 
 So by the time I got to make this app, the game was already tested (unit-tests) so I was 99% sure it was all good. Just one edge-case was missing, which I found out much later.
 
